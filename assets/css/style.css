@@ -1,3 +1,8 @@
 * {
     font-family: 'Fjalla One', sans-serif;
 }
+
+main {
+    width: 75%;
+    padding: 15px;
+}

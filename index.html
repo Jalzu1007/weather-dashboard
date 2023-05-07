@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-<!--Link to Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<!--Link Font-->
+    <!--Link to Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!--Link Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
@@ -20,88 +22,104 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container-fluid">
-        <div class="row">
-<!--Adding search button and text input-->
-            <aside class="col-lg-3 bg-light">
-                <h5 class="mt-3">Search for a City:</h5>
-                <div class="form-inline form-group">
-                    <input type="text" class="form-control" id="search-value" placeholder="Enter a City">
-                    <button class="btn btn-dark mt-2 container-fluid" id="search-button">Search</button>
-                </div>
-                <br>
-<!--Search History-->
-                <div class="card search-card mt-2">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item history1">City Name 1</li>
-                        <li class="list-group-item">City Name 2</li>
-                        <li class="list-group-item">City Name 3</li>
-                        <li class="list-group-item">City Name 4</li>
-                        <li class="list-group-item">City Name 5</li>
-                        <li class="list-group-item">City Name 6</li>
-                        <li class="list-group-item">City Name 7</li>
-                        <li class="list-group-item">City Name 8</li>
-                      </ul>                    
-                </div>
-            </aside>
-
-            <div class="card cityweather">
-                <div id="today" class="mt-3 card-body" style="margin-bottom: 20px;">
-                    <h2 class="card-title city-name">Enter a City</h2>
-                    <div class="col-md-2 image-div"><img id="icon-main" height="auto" width="auto"></div>
-                </div>
-                <div id="forecast">
-                    <p class="card-body forecast-temp">Temperature: </p>
-                    <p class="card-body forecast-hws">Humidity: 
-                    </p>
-                    <p class="card-body forecast-hws forecast-ws">Wind Speed: 
-                    </p>
-                    <p class="card-body forecast-uv">UV Index: <button type="button" class="btn btn-danger uv-button"></button>
-                    </p>
+<div class="d-flex">
+        <!--Adding search button and text input-->
+        <aside class="card w-25 p-2 border-0">
+            <div class="mb-3 d-grid gap-3">
+                <label for="formGroupExampleInput" class="form-label fs-2 pt-2">Search for a City:</label>
+                <input type="text" class="form-control" id="search-value" placeholder="Enter a City">
+                <button class="btn btn-dark" type="button" id="search-button">Search</button>
+                <!--Search history of cities-->
+                <ul class="list-group d-grid gap-3 text-center border-top pt-3 rounded-0">
+                    <li class="list-group-item bg-secondary rounded-3">City 1</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 2</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 3</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 4</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 5</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 6</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 7</li>
+                    <li class="list-group-item bg-secondary rounded-3">City 8</li>
+                </ul>
+            </div>
+        </aside>
+    <main>
+<!--Today weather forecast-->
+        <div class="container d-grid gap-3 pt-2">
+            <div class="row">
+                <div class="card border-black">
+                    <div class="card-body p-5" id="today">
+                        <h2 class="card-title city-name">City Name<img id="icon-main" height="auto" width="auto"></h2>
+                            <p class="card-body forecast-temp">Temperature:</p>
+                            <p class="card-body forecast-hws">Humidity:</p>
+                            <p class="card-body forecast-hws forecast-ws">Wind:</p>
+                     </div>
                 </div>
             </div>
-            <div class="card container-fluid five-forecast">
-                <h2 class="card-title">5-Day Forecast:</h2>
-                <button type="button" class="btn btn-primary forecast-one">
-                  <h5 class="forecast-ones">Date</h5>
-                  <p style="text-align: center;"><img id="icon-one" height="auto" width="auto"></p>
-                  <p class= "forecast-temp-one">Temp:</p>
-                  <p class="forecast-hum-one">Humidity:</p>
-                </button>
-                <button type="button" class="btn btn-primary forecast-other forecast-two" style="left: 200px;">
-                  <h5 class="forecast-twos">Date</h5>
-                  <p style="text-align: center;"><img id="icon-two" height="auto" width="auto"></p>
-                  <p class="forecast-temp-two">Temp:</p>
-                  <p class="forecast-hum-two">Humidity:</p>
-                </button>
-                <button type="button" class="btn btn-primary forecast-other forecast-three" style="left: 385px;">
-                  <h5 class="forecast-threes">Date</h5>
-                  <p style="text-align: center;"><img id="icon-three" height="auto" width="auto"></p>
-                  <p class="forecast-temp-three">Temp:</p>
-                  <p class="forecast-hum-three">Humidity:</p>
-                </button>
-                <button type="button" class="btn btn-primary forecast-other forecast-four" style="left: 570px;">
-                  <h5 class="forecast-fours">Date</h5>
-                  <p style="text-align: center;"><img id="icon-four" height="auto" width="auto"></p>
-                  <p class="forecast-temp-four">Temp:</p>
-                  <p class="forecast-hum-four">Humidity:</p>
-                </button>
-                <button type="button" class="btn btn-primary forecast-other forecast-five" style="left: 755px;">
-                  <h5 class="forecast-fives">Date</h5>
-                  <p style="text-align: center;"><img id="icon-five" height="auto" width="auto"></p>
-                  <p class="forecast-temp-five">Temp:</p>
-                  <p class="forecast-hum-five">Humidity:</p>
-                </button>
+<!--Five day forecast-->
+        <div class="forecast-title">
+            <h2>5-Day Forecast:</h2>
+        </div>
+        <div class="row gap-3">
+            <div class="card border-secondary" style="max-width: 12rem;">
+                <div class="card-header bg-transparent fs-5">Date</div>
+                
+                <div class="card-body">
+                    <p class="text-center"><img id="icon-one" height="auto" width="auto"></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                    <p>Wind:</p>
+                </div>
+            </div>
+            <div class="card border-secondary" style="max-width: 12rem;">
+                <div class="card-header bg-transparent fs-5">Date</div>
+                <div class="card-body">
+                    <p class="text-center"><img id="icon-two" height="auto" width="auto"></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                    <p>Wind:</p>
+                </div>
+            </div>
+            <div class="card border-secondary" style="max-width: 12rem;">
+                <div class="card-header bg-transparent fs-5">Date</div>
+                <div class="card-body">
+                    <p class="text-center"><img id="icon-three" height="auto" width="auto"></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                    <p>Wind:</p>
+                </div>
+            </div>
+            <div class="card border-secondary" style="max-width: 12rem;">
+                <div class="card-header bg-transparent fs-5">Date</div>
+                <div class="card-body">
+                    <p class="text-center"><img id="icon-four" height="auto" width="auto"></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                    <p>Wind:</p>
+                </div>
+            </div>
+            <div class="card border-secondary" style="max-width: 12rem;">
+                <div class="card-header bg-transparent fs-5">Date</div>
+                <div class="card-body">
+                    <p class="text-center"><img id="icon-five" height="auto" width="auto"></p>
+                    <p>Temp:</p>
+                    <p>Humidity:</p>
+                    <p>Wind:</p>
+                </div>
             </div>
         </div>
-    </div>
-
+        </div>
+    </main>
+</div>           
 <!--Bootstrap Script-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
 <!--JQuery Script-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--Day.js Script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"></script>
 <!--JS Script-->
     <script src="./assets/scripts/script.js"></script>
 </body>
