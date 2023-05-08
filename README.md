@@ -4,8 +4,6 @@
 
 This project is a weather dashboard that allows users to search for a city and see its current and future weather conditions. The motivation for this project is to provide a tool for travelers to plan their trips more effectively by having up-to-date weather information for multiple cities. By using the OpenWeather API and localStorage, the dashboard retrieves weather data for cities and stores persistent data for future use. Through this project, I learned how to work with APIs and use localStorage to store data.
 
-
-
 ## Installation
 
 To install this project, follow these steps:
@@ -26,7 +24,7 @@ git clone https://github.com/Jalzu1007/weather-dashboard.git
 
 ## Usage
 
-To use the weather dashboard, follow these steps:
+To use the Weather Dashboard, follow these steps:
 
 1. Enter a city name in the search bar and click the search button or press enter.
 2. The dashboard will display the city's current weather conditions, including the city name, date, an icon representation of weather conditions, temperature, humidity, and wind speed.
@@ -38,7 +36,7 @@ Deployed website:
 
 
 
-Screenshot of the Work Day Scheduler:
+Screenshot of the Weather Dashboard:
 
 ![alt text](./assets/images) ![alt text](./assets/images) ![alt text](./assets/images) 
 
