@@ -8,15 +8,15 @@ $(document).ready(function () {
         searchWeather(searchValue);
     });
 
-    //function for search history and store to local storage
-    $("#search-button").on("click", function () {
-        var searchHistory = $("#search-value").val();
-        console.log(searchHistory)
-        localStorage.setItem("history", JSON.stringify(searchHistory))
-    });
-
     //APIkey from openweatherAPI
     let APIkey ="9f1a5aabe8598c1da8fae3c2f589e48d"
+
+    //function that saves search history to local storage
+    function saveSearchHistory(searchValue) {
+        let searchHistory = JSON.parse(localStorage.getItem("history")) || [];
+        searchHistory.push(searchValue);
+        localStorage.setItem("history", JSON.stringify(searchHistory));
+    }
 
     //fetch call with the user input
     function searchWeather(searchValue) {
@@ -43,17 +43,19 @@ $(document).ready(function () {
         $(".forecast-ws").text("Wind: " + data.wind.speed)
     
         //second fetch call to get the five day forecast
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&exclude=hourly,minutely,current,alerts&appid=${APIkey}`)
+         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}exclude=hourly,minutely,current,alerts&appid=${APIkey}`)
           .then(response => response.json())
-          .then(data2 => {
+           .then(data2 => {
 
             //setting variables for the various days of the forecast
-            let today = data2.daily[0].dt
-            let dayOne = data2.daily[1].dt
-            let dayTwo = data2.daily[2].dt
-            let dayThree = data2.daily[3].dt
-            let dayFour = data2.daily[4].dt
-            let dayFive = data2.daily[5].dt
+            if (data2.daily && data2.daily.length >= 6) {
+                let today = data2.daily[0].dt
+                let dayOne = data2.daily[1].dt;
+                let dayTwo = data2.daily[2].dt;
+                let dayThree = data2.daily[3].dt;
+                let dayFour = data2.daily[4].dt;
+                let dayFive = data2.daily[5].dt;
+              }
 
             //function that converts the date value into mm/dd/yyyy
             function timeConverter(value) {
@@ -75,10 +77,11 @@ $(document).ready(function () {
         //grabbing icon value and assigning them to the HTML
         $("#icon-main").attr("src", iconURL + data2.daily[0].weather[0].icon + ".png")
         $("#icon-one").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png")
-        $("#icon-two").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png")
-        $("#icon-three").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png")
-        $("#icon-four").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png")
-        $("#icon-five").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png")
+        $("#icon-two").attr("src", iconURL + data2.daily[2].weather[0].icon + ".png")
+        $("#icon-three").attr("src", iconURL + data2.daily[3].weather[0].icon + ".png")
+        $("#icon-four").attr("src", iconURL + data2.daily[4].weather[0].icon + ".png")
+        $("#icon-five").attr("src", iconURL + data2.daily[5].weather[0].icon + ".png")
+
 
         //grabbing the forecast date and assigning them to the HTML
         $(".forecast-ones").text(timeConverter(dayOne));
@@ -119,9 +122,9 @@ $(document).ready(function () {
             console.error('Error:', error);
             });
         }
-    )
+     )
             .catch(error => {
             console.error('Error:', error);
-        });
-    };
-})
+            });
+        }
+    })
