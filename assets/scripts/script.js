@@ -56,11 +56,11 @@ $(document).ready(function () {
               //setting variables for the various days of the forecast
               if (data2.list && data2.list.length >= 6) {
                 const today = dayjs().format('MM/DD/YYYY');
-                const dayOne = dayjs(data2.list[0].dt * 1000).format('MM/DD/YYYY');
-                const dayTwo = dayjs(data2.list[1].dt * 1000).format('MM/DD/YYYY');
-                const dayThree = dayjs(data2.list[2].dt * 1000).format('MM/DD/YYYY');
-                const dayFour = dayjs(data2.list[3].dt * 1000).format('MM/DD/YYYY');
-                const dayFive = dayjs(data2.list[4].dt * 1000).format('MM/DD/YYYY');
+                const dayOne = dayjs(data2.list[8].dt * 1000).format('MM/DD/YYYY');
+                const dayTwo = dayjs(data2.list[16].dt * 1000).format('MM/DD/YYYY');
+                const dayThree = dayjs(data2.list[24].dt * 1000).format('MM/DD/YYYY');
+                const dayFour = dayjs(data2.list[32].dt * 1000).format('MM/DD/YYYY');
+                const dayFive = dayjs(data2.list[39].dt * 1000).format('MM/DD/YYYY');
               
                 //grabbing the forecast date and assigning them to the HTML
                 $(".forecast-ones").text(timeConverter(dayOne));
@@ -86,7 +86,6 @@ $(document).ready(function () {
                 $(".date-5").text("");
               }
               
-
         //url for the icons
         let iconURL = "https://openweathermap.org/img/w/";
 
