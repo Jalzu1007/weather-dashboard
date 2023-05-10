@@ -121,11 +121,11 @@ $(document).ready(function () {
         $(".forecast-hum-five").text("Humidity: " + data2.list[39].main.humidity + "%");
 
         //grabbing the forecast wind speed data and assigning them to the HTML
-        $(".forecast-ws-one").text("Wind: " + data2.list[8].main.wind_speed + " MPH");
-        $(".forecast-ws-two").text("Wind: " + data2.list[16].main.wind_speed + " MPH");
-        $(".forecast-ws-three").text("Wind: " + data2.list[24].main.wind_speed + " MPH");
-        $(".forecast-ws-four").text("Wind: " + data2.list[32].main.wind_speed + " MPH");
-        $(".forecast-ws-five").text("Wind: " + data2.list[39].main.wind_speed + " MPH");
+        $(".forecast-ws-one").text("Wind: " + data2.list[8].wind.speed + " MPH");
+        $(".forecast-ws-two").text("Wind: " + data2.list[16].wind.speed + " MPH");
+        $(".forecast-ws-three").text("Wind: " + data2.list[24].wind.speed + " MPH");
+        $(".forecast-ws-four").text("Wind: " + data2.list[32].wind.speed + " MPH");
+        $(".forecast-ws-five").text("Wind: " + data2.list[39].wind.speed + " MPH");
         })
             .catch(error => {
             console.error('Error:', error);
