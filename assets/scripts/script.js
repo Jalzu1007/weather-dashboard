@@ -47,53 +47,48 @@ $(document).ready(function () {
          fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&appid=${APIkey}`)
           .then(response => response.json())
            .then(data2 => {
-            console.log(data2);
+            console.log(data2,"Data 2");
 
-            //setting variables for the various days of the forecast
-            if (data2.daily && data2.daily.length >= 5) {
-                let today = timeConverter(data2.daily[0].dt);
-                let dayOne = timeConverter(data2.daily[1].dt);
-                let dayTwo = timeConverter(data2.daily[2].dt);
-                let dayThree = timeConverter(data2.daily[3].dt);
-                let dayFour = timeConverter(data2.daily[4].dt);
-                let dayFive = timeConverter(data2.daily[5].dt);
-                console.log(today)
-                console.log(dayOne)
-                console.log(dayTwo)
-                console.log(dayThree)
-                console.log(dayFour)
-                console.log(dayFive)
-            }
+        //setting variables for the various days of the forecast
+        if (data2.list && data2.list.length >= 6) {
+            const today = dayjs().format('MM/DD/YYYY');
+            const dayOne = dayjs(data2.list[0].dt * 1000).format('MM/DD/YYYY');
+            const dayTwo = dayjs(data2.list[1].dt * 1000).format('MM/DD/YYYY');
+            const dayThree = dayjs(data2.list[2].dt * 1000).format('MM/DD/YYYY');
+            const dayFour = dayjs(data2.list[3].dt * 1000).format('MM/DD/YYYY');
+            const dayFive = dayjs(data2.list[4].dt * 1000).format('MM/DD/YYYY');
+          
+            // Grabbing city name value and assigning them to the HTML
+            $(".city-name").text(searchValue + " " + today);
+            $(".date-1").text(dayOne);
+            $(".date-2").text(dayTwo);
+            $(".date-3").text(dayThree);
+            $(".date-4").text(dayFour);
+            $(".date-5").text(dayFive);
+          } else {
+            // Display an error message or fallback text
+            $(".city-name").text("Forecast data unavailable");
+            $(".date-1").text("");
+            $(".date-2").text("");
+            $(".date-3").text("");
+            $(".date-4").text("");
+            $(".date-5").text("");
+          }
+          
+          
 
-            //function that converts the date value into mm/dd/yyyy using Day.js
-            function timeConverter(value) {
-                const dt = dayjs.unix(value);
-                const formattedTime = dt.format('MM/DD/YYYY');
-                console.log(formattedTime);
-                return formattedTime;
-            } 
-              
         //url for the icons
         let iconURL = "https://openweathermap.org/img/w/";
 
-        //grabbing city name value and assigning them to the HTML
-        $(".city-name").text(searchValue + " " + timeConverter(today));
-
         //grabbing icon value and assigning them to the HTML
-        if (data2.daily && data2.daily.length > 0) {
-            $("#icon-main").attr("src", iconURL + data2.daily[0].weather[0].icon + ".png");
-            $("#icon-one").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png");
-            $("#icon-two").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png");
-            $("#icon-three").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png");
-            $("#icon-four").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png");
-            $("#icon-five").attr("src", iconURL + data2.daily[1].weather[0].icon + ".png");
+        if (data2.list && data2.list.length > 0) {
+            $("#icon-main").attr("src", iconURL + data2.list[0].weather[0].icon + ".png");
+            $("#icon-one").attr("src", iconURL + data2.list[1].weather[0].icon + ".png");
+            $("#icon-two").attr("src", iconURL + data2.list[2].weather[0].icon + ".png");
+            $("#icon-three").attr("src", iconURL + data2.list[3].weather[0].icon + ".png");
+            $("#icon-four").attr("src", iconURL + data2.list[4].weather[0].icon + ".png");
+            $("#icon-five").attr("src", iconURL + data2.list[5].weather[0].icon + ".png");
           }
-          
-        let dayOne = "";
-        let dayTwo = "";
-        let dayThree = "";
-        let dayFour = "";
-        let dayFive = "";
         
         //grabbing the forecast date and assigning them to the HTML
         $(".forecast-ones").text(timeConverter(dayOne));
@@ -103,11 +98,11 @@ $(document).ready(function () {
         $(".forecast-fives").text(timeConverter(dayFive));
 
         //Kelvin to Fahrenheit formula
-        let tempFOne = ((data2.daily[1].temp.max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFTwo = ((data2.daily[2].temp.max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFThree = ((data2.daily[3].temp.max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFour = ((data2.daily[4].temp.max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFive = ((data2.daily[5].temp.max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFOne = ((data2.list[1].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFTwo = ((data2.list[2].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFThree = ((data2.list[3].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFour = ((data2.list[4].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFive = ((data2.list[5].temp_max - 273.15) * 1.80 + 32).toFixed(1);
 
         //grabbing the forecast temp and assigning them to the HTML
         $(".forecast-temp-one").text("Temp: " + tempFOne + " °F");
@@ -117,18 +112,18 @@ $(document).ready(function () {
         $(".forecast-temp-five").text("Temp: " + tempFFive + " °F");
 
         //grabbing the forecast humidity data and assigning them to the HTML
-        $(".forecast-hum-one").text("Humidity: " + data2.daily[1].humidity + "%");
-        $(".forecast-hum-two").text("Humidity: " + data2.daily[2].humidity + "%");
-        $(".forecast-hum-three").text("Humidity: " + data2.daily[3].humidity + "%");
-        $(".forecast-hum-four").text("Humidity: " + data2.daily[4].humidity + "%");
-        $(".forecast-hum-five").text("Humidity: " + data2.daily[5].humidity + "%");
+        $(".forecast-hum-one").text("Humidity: " + data2.list[1].humidity + "%");
+        $(".forecast-hum-two").text("Humidity: " + data2.list[2].humidity + "%");
+        $(".forecast-hum-three").text("Humidity: " + data2.list[3].humidity + "%");
+        $(".forecast-hum-four").text("Humidity: " + data2.list[4].humidity + "%");
+        $(".forecast-hum-five").text("Humidity: " + data2.list[5].humidity + "%");
 
         //grabbing the forecast wind speed data and assigning them to the HTML
-        $(".forecast-ws-one").text("Wind: " + data2.daily[1].wind_speed + " MPH");
-        $(".forecast-ws-two").text("Wind: " + data2.daily[2].wind_speed + " MPH");
-        $(".forecast-ws-three").text("Wind: " + data2.daily[3].wind_speed + " MPH");
-        $(".forecast-ws-four").text("Wind: " + data2.daily[4].wind_speed + " MPH");
-        $(".forecast-ws-five").text("Wind: " + data2.daily[5].wind_speed + " MPH");
+        $(".forecast-ws-one").text("Wind: " + data2.list[1].wind_speed + " MPH");
+        $(".forecast-ws-two").text("Wind: " + data2.list[2].wind_speed + " MPH");
+        $(".forecast-ws-three").text("Wind: " + data2.list[3].wind_speed + " MPH");
+        $(".forecast-ws-four").text("Wind: " + data2.list[4].wind_speed + " MPH");
+        $(".forecast-ws-five").text("Wind: " + data2.list[5].wind_speed + " MPH");
         })
             .catch(error => {
             console.error('Error:', error);
