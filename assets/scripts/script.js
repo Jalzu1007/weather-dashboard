@@ -29,10 +29,10 @@ $(document).ready(function () {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
+                console.log(data,"Data 1");
 
         //formula to convert Kelvin to Fahrenheit 
-        let tempF = ((data.main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let tempF = ((data.main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
         
         //setting variables for lattitude and longitude for API call
         let lattitude = data.coord.lat
