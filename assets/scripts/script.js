@@ -92,19 +92,19 @@ $(document).ready(function () {
         //grabbing icon value and assigning them to the HTML
         if (data2.list && data2.list.length > 0) {
             $("#icon-main").attr("src", iconURL + data2.list[0].weather[0].icon + ".png");
-            $("#icon-one").attr("src", iconURL + data2.list[1].weather[0].icon + ".png");
-            $("#icon-two").attr("src", iconURL + data2.list[2].weather[0].icon + ".png");
-            $("#icon-three").attr("src", iconURL + data2.list[3].weather[0].icon + ".png");
-            $("#icon-four").attr("src", iconURL + data2.list[4].weather[0].icon + ".png");
-            $("#icon-five").attr("src", iconURL + data2.list[5].weather[0].icon + ".png");
+            $("#icon-one").attr("src", iconURL + data2.list[8].weather[0].icon + ".png");
+            $("#icon-two").attr("src", iconURL + data2.list[16].weather[0].icon + ".png");
+            $("#icon-three").attr("src", iconURL + data2.list[24].weather[0].icon + ".png");
+            $("#icon-four").attr("src", iconURL + data2.list[32].weather[0].icon + ".png");
+            $("#icon-five").attr("src", iconURL + data2.list[39].weather[0].icon + ".png");
           }
 
         //Kelvin to Fahrenheit formula
-        let tempFOne = ((data2.list[1].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFTwo = ((data2.list[2].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFThree = ((data2.list[3].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFour = ((data2.list[4].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFive = ((data2.list[5].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFOne = ((data2.list[8].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFTwo = ((data2.list[16].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFThree = ((data2.list[24].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFour = ((data2.list[32].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFive = ((data2.list[39].temp_max - 273.15) * 1.80 + 32).toFixed(1);
 
         //grabbing the forecast temp and assigning them to the HTML
         $(".forecast-temp-one").text("Temp: " + tempFOne + " °F");
@@ -114,18 +114,18 @@ $(document).ready(function () {
         $(".forecast-temp-five").text("Temp: " + tempFFive + " °F");
 
         //grabbing the forecast humidity data and assigning them to the HTML
-        $(".forecast-hum-one").text("Humidity: " + data2.list[1].humidity + "%");
-        $(".forecast-hum-two").text("Humidity: " + data2.list[2].humidity + "%");
-        $(".forecast-hum-three").text("Humidity: " + data2.list[3].humidity + "%");
-        $(".forecast-hum-four").text("Humidity: " + data2.list[4].humidity + "%");
-        $(".forecast-hum-five").text("Humidity: " + data2.list[5].humidity + "%");
+        $(".forecast-hum-one").text("Humidity: " + data2.list[8].humidity + "%");
+        $(".forecast-hum-two").text("Humidity: " + data2.list[16].humidity + "%");
+        $(".forecast-hum-three").text("Humidity: " + data2.list[24].humidity + "%");
+        $(".forecast-hum-four").text("Humidity: " + data2.list[32].humidity + "%");
+        $(".forecast-hum-five").text("Humidity: " + data2.list[39].humidity + "%");
 
         //grabbing the forecast wind speed data and assigning them to the HTML
-        $(".forecast-ws-one").text("Wind: " + data2.list[1].wind_speed + " MPH");
-        $(".forecast-ws-two").text("Wind: " + data2.list[2].wind_speed + " MPH");
-        $(".forecast-ws-three").text("Wind: " + data2.list[3].wind_speed + " MPH");
-        $(".forecast-ws-four").text("Wind: " + data2.list[4].wind_speed + " MPH");
-        $(".forecast-ws-five").text("Wind: " + data2.list[5].wind_speed + " MPH");
+        $(".forecast-ws-one").text("Wind: " + data2.list[8].wind_speed + " MPH");
+        $(".forecast-ws-two").text("Wind: " + data2.list[16].wind_speed + " MPH");
+        $(".forecast-ws-three").text("Wind: " + data2.list[24].wind_speed + " MPH");
+        $(".forecast-ws-four").text("Wind: " + data2.list[32].wind_speed + " MPH");
+        $(".forecast-ws-five").text("Wind: " + data2.list[39].wind_speed + " MPH");
         })
             .catch(error => {
             console.error('Error:', error);
