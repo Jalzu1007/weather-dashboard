@@ -100,11 +100,11 @@ $(document).ready(function () {
           }
 
         //Kelvin to Fahrenheit formula
-        let tempFOne = ((data2.list[8].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFTwo = ((data2.list[16].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFThree = ((data2.list[24].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFour = ((data2.list[32].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFive = ((data2.list[39].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFOne = ((data2.list[8].main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFTwo = ((data2.list[16].main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFThree = ((data2.list[24].main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFour = ((data2.list[32].main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFive = ((data2.list[39].main.temp - 273.15) * 1.80 + 32).toFixed(1);
 
         //grabbing the forecast temp and assigning them to the HTML
         $(".forecast-temp-one").text("Temp: " + tempFOne + " °F");
