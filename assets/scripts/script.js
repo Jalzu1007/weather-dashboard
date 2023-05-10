@@ -5,6 +5,7 @@ $(document).ready(function () {
     var searchValue = $("#search-value").val();
     console.log(searchValue);
     $("#search-value").val("");
+    saveSearchHistory(searchValue);
     searchWeather(searchValue);
 });
 
@@ -49,13 +50,13 @@ $(document).ready(function () {
             console.log(data2);
 
             //setting variables for the various days of the forecast
-            if (data2.daily && data2.daily.length >= 6) {
-                let today = timeConverter(data2.list[0].dt);
-                let dayOne = timeConverter(data2.list[1].dt);
-                let dayTwo = timeConverter(data2.list[2].dt);
-                let dayThree = timeConverter(data2.list[3].dt);
-                let dayFour = timeConverter(data2.list[4].dt);
-                let dayFive = timeConverter(data2.list[5].dt);
+            if (data2.daily && data2.daily.length >= 5) {
+                let today = timeConverter(data2.daily[0].dt);
+                let dayOne = timeConverter(data2.daily[1].dt);
+                let dayTwo = timeConverter(data2.daily[2].dt);
+                let dayThree = timeConverter(data2.daily[3].dt);
+                let dayFour = timeConverter(data2.daily[4].dt);
+                let dayFive = timeConverter(data2.daily[5].dt);
                 console.log(today)
                 console.log(dayOne)
                 console.log(dayTwo)
@@ -109,25 +110,25 @@ $(document).ready(function () {
         let tempFFive = ((data2.daily[5].temp.max - 273.15) * 1.80 + 32).toFixed(1);
 
         //grabbing the forecast temp and assigning them to the HTML
-        $(".forecast-temp-one").text("Temp: " + tempFOne);
-        $(".forecast-temp-two").text("Temp: " + tempFTwo);
-        $(".forecast-temp-three").text("Temp: " + tempFThree);
-        $(".forecast-temp-four").text("Temp: " + tempFFour);
-        $(".forecast-temp-five").text("Temp: " + tempFFive);
+        $(".forecast-temp-one").text("Temp: " + tempFOne + " °F");
+        $(".forecast-temp-two").text("Temp: " + tempFTwo + " °F");
+        $(".forecast-temp-three").text("Temp: " + tempFThree + " °F");
+        $(".forecast-temp-four").text("Temp: " + tempFFour + " °F");
+        $(".forecast-temp-five").text("Temp: " + tempFFive + " °F");
 
         //grabbing the forecast humidity data and assigning them to the HTML
-        $(".forecast-hum-one").text("Humidity: " + data2.daily[1].humidity);
-        $(".forecast-hum-two").text("Humidity: " + data2.daily[2].humidity);
-        $(".forecast-hum-three").text("Humidity: " + data2.daily[3].humidity);
-        $(".forecast-hum-four").text("Humidity: " + data2.daily[4].humidity);
-        $(".forecast-hum-five").text("Humidity: " + data2.daily[5].humidity);
+        $(".forecast-hum-one").text("Humidity: " + data2.daily[1].humidity + "%");
+        $(".forecast-hum-two").text("Humidity: " + data2.daily[2].humidity + "%");
+        $(".forecast-hum-three").text("Humidity: " + data2.daily[3].humidity + "%");
+        $(".forecast-hum-four").text("Humidity: " + data2.daily[4].humidity + "%");
+        $(".forecast-hum-five").text("Humidity: " + data2.daily[5].humidity + "%");
 
         //grabbing the forecast wind speed data and assigning them to the HTML
-        $(".forecast-ws-one").text("Wind: " + data2.daily[1].wind.speed);
-        $(".forecast-ws-two").text("Wind: " + data2.daily[2].wind.speed);
-        $(".forecast-ws-three").text("Wind: " + data2.daily[3].wind.speed);
-        $(".forecast-ws-four").text("Wind: " + data2.daily[4].wind.speed);
-        $(".forecast-ws-five").text("Wind: " + data2.daily[5].wind.speed);
+        $(".forecast-ws-one").text("Wind: " + data2.daily[1].wind_speed + " MPH");
+        $(".forecast-ws-two").text("Wind: " + data2.daily[2].wind_speed + " MPH");
+        $(".forecast-ws-three").text("Wind: " + data2.daily[3].wind_speed + " MPH");
+        $(".forecast-ws-four").text("Wind: " + data2.daily[4].wind_speed + " MPH");
+        $(".forecast-ws-five").text("Wind: " + data2.daily[5].wind_speed + " MPH");
         })
             .catch(error => {
             console.error('Error:', error);
