@@ -32,7 +32,7 @@ $(document).ready(function () {
                 console.log(data,"Data 1");
 
         //formula to convert Kelvin to Fahrenheit 
-        let tempF = ((data.main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempF = ((data.main.temp - 273.15) * 1.80 + 32).toFixed(1);
         
         //setting variables for lattitude and longitude for API call
         let lattitude = data.coord.lat
@@ -100,11 +100,11 @@ $(document).ready(function () {
           }
 
         //Kelvin to Fahrenheit formula
-        let tempFOne = ((data2.list[8].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFTwo = ((data2.list[16].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFThree = ((data2.list[24].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFour = ((data2.list[32].temp_max - 273.15) * 1.80 + 32).toFixed(1);
-        let tempFFive = ((data2.list[39].temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFOne = ((data2.list[8].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFTwo = ((data2.list[16].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFThree = ((data2.list[24].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFour = ((data2.list[32].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
+        let tempFFive = ((data2.list[39].main.temp_max - 273.15) * 1.80 + 32).toFixed(1);
 
         //grabbing the forecast temp and assigning them to the HTML
         $(".forecast-temp-one").text("Temp: " + tempFOne + " °F");
@@ -114,18 +114,18 @@ $(document).ready(function () {
         $(".forecast-temp-five").text("Temp: " + tempFFive + " °F");
 
         //grabbing the forecast humidity data and assigning them to the HTML
-        $(".forecast-hum-one").text("Humidity: " + data2.list[8].humidity + "%");
-        $(".forecast-hum-two").text("Humidity: " + data2.list[16].humidity + "%");
-        $(".forecast-hum-three").text("Humidity: " + data2.list[24].humidity + "%");
-        $(".forecast-hum-four").text("Humidity: " + data2.list[32].humidity + "%");
-        $(".forecast-hum-five").text("Humidity: " + data2.list[39].humidity + "%");
+        $(".forecast-hum-one").text("Humidity: " + data2.list[8].main.humidity + "%");
+        $(".forecast-hum-two").text("Humidity: " + data2.list[16].main.humidity + "%");
+        $(".forecast-hum-three").text("Humidity: " + data2.list[24].main.humidity + "%");
+        $(".forecast-hum-four").text("Humidity: " + data2.list[32].main.humidity + "%");
+        $(".forecast-hum-five").text("Humidity: " + data2.list[39].main.humidity + "%");
 
         //grabbing the forecast wind speed data and assigning them to the HTML
-        $(".forecast-ws-one").text("Wind: " + data2.list[8].wind_speed + " MPH");
-        $(".forecast-ws-two").text("Wind: " + data2.list[16].wind_speed + " MPH");
-        $(".forecast-ws-three").text("Wind: " + data2.list[24].wind_speed + " MPH");
-        $(".forecast-ws-four").text("Wind: " + data2.list[32].wind_speed + " MPH");
-        $(".forecast-ws-five").text("Wind: " + data2.list[39].wind_speed + " MPH");
+        $(".forecast-ws-one").text("Wind: " + data2.list[8].main.wind_speed + " MPH");
+        $(".forecast-ws-two").text("Wind: " + data2.list[16].main.wind_speed + " MPH");
+        $(".forecast-ws-three").text("Wind: " + data2.list[24].main.wind_speed + " MPH");
+        $(".forecast-ws-four").text("Wind: " + data2.list[32].main.wind_speed + " MPH");
+        $(".forecast-ws-five").text("Wind: " + data2.list[39].main.wind_speed + " MPH");
         })
             .catch(error => {
             console.error('Error:', error);
