@@ -74,11 +74,14 @@ $(document).ready(function () {
     }
 
     for (let i = 0; i < history.length; i++) {
-        let city = document.getElementById(`city-${i+1}`);
-        city.onclick = function() {
-          searchWeather(history[i]);
-        };
+      let city = document.getElementById(`city-${i+1}`);
+      if (city) { // check if the element exists
+          city.onclick = function() {
+              $("#search-value").val(history[i]);
+              searchWeather(history[i]);
+          };
       }
+  }
       
     //fetch call with the user input
     function searchWeather(searchValue) {
