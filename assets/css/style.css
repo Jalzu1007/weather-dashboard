@@ -1,5 +1,8 @@
 * {
     font-family: 'Fjalla One', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 main {
