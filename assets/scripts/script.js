@@ -12,16 +12,6 @@ $(document).ready(function () {
         cityElements.forEach((city) => {
         city.textContent = "";
         });
-        
-        // $(".forecast-temp").empty();
-        // $(".forecast-hws").empty();
-        // $(".forecast-ws").empty();
-        // $(".forecast-ones").empty();
-        // $(".forecast-twos").empty();
-        // $(".forecast-threes").empty();
-        // $(".forecast-fours").empty();
-        // $(".forecast-fives").empty();
-
       }
 
     //declaring variables and looping the local storage to the UI
@@ -37,15 +27,21 @@ $(document).ready(function () {
     let history = JSON.parse(localStorage.getItem("history"));
 
     if (history !== null && history !== undefined) {
-        if (history.length > 0) cityOne.textContent = history[0];
-        if (history.length > 1) cityTwo.textContent = history[1];
-        if (history.length > 2) cityThree.textContent = history[2];
-        if (history.length > 3) cityFour.textContent = history[3];
-        if (history.length > 4) cityFive.textContent = history[4];
-        if (history.length > 5) citySix.textContent = history[5];
-        if (history.length > 6) citySeven.textContent = history[6];
-        if (history.length > 7) cityEight.textContent = history[7];
-    }
+    for (let i = 0; i < history.length; i++) {
+    let city = document.getElementById(`city-${i+1}`);
+      city.onclick = function() {
+      searchWeather(history[i]);
+    };
+    if (history.length > 0) cityOne.textContent = history[0];
+    if (history.length > 1) cityTwo.textContent = history[1];
+    if (history.length > 2) cityThree.textContent = history[2];
+    if (history.length > 3) cityFour.textContent = history[3];
+    if (history.length > 4) cityFive.textContent = history[4];
+    if (history.length > 5) citySix.textContent = history[5];
+    if (history.length > 6) citySeven.textContent = history[6];
+    if (history.length > 7) cityEight.textContent = history[7];
+  }
+}
   
    //function to save the user input as a search value
    $("#search-button").on("click", function(){
@@ -100,7 +96,7 @@ $(document).ready(function () {
         let longitude = data.coord.lon
 
         //grabbing the values from the data object and assigning them to HTML ids
-        $(".forecast-temp").text("Temperature (F): " + tempF + " °F")
+        $(".forecast-temp").text("Temperature: " + tempF + " °F")
         $(".forecast-hws").text("Humidity: " + data.main.humidity + "%")
         $(".forecast-ws").text("Wind: " + data.wind.speed + " MPH")
     

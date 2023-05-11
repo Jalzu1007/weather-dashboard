@@ -34,11 +34,11 @@ To use the Weather Dashboard, follow these steps:
 
 Deployed website:
 
-
+https://jalzu1007.github.io/weather-dashboard/
 
 Screenshot of the Weather Dashboard:
 
-![alt text](./assets/images) ![alt text](./assets/images) ![alt text](./assets/images) 
+![alt text](./assets/images/dashboard-screenshot.png) ![alt text](./assets/images/dashboard-screenshot1.png) ![alt text](./assets/images/dashboard-screenshot2.png) 
 
 ## Credits
 
