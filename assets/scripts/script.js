@@ -69,6 +69,10 @@ $(document).ready(function () {
     //APIkey from openweatherAPI
     let APIkey ="9f1a5aabe8598c1da8fae3c2f589e48d"
 
+    if (!history) {
+      history = [];
+    }
+
     for (let i = 0; i < history.length; i++) {
         let city = document.getElementById(`city-${i+1}`);
         city.onclick = function() {
