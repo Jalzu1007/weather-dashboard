@@ -1,42 +1,52 @@
 $(document).ready(function () {
 
-    // let clearHistory = document.getElementById('clear-history');
-    // clearHistory.onclick = localStorage.clear();
+    //clear history button
+    let clearHistory = document.getElementById('clear-history');
+    clearHistory.onclick = function() {
+    localStorage.clear();
+    clearSearchHistoryUI();
+    };
 
-    // let cityOne = document.getElementById('city-1')
-    // let cityTwo = document.getElementById('city-2')
-    // let cityThree = document.getElementById('city-3')
-    // let cityFour = document.getElementById('city-4')
-    // let cityFive = document.getElementById('city-5')
-    // let citySix = document.getElementById('city-6')
-    // let citySeven = document.getElementById('city-7')
-    // let cityEight = document.getElementById('city-8')
-    
-    // let history = JSON.parse(localStorage.getItem("history"));
+    function clearSearchHistoryUI() {
+        let cityElements = [cityOne, cityTwo, cityThree, cityFour, cityFive, citySix, citySeven, cityEight];
+        cityElements.forEach((city) => {
+        city.textContent = "";
+        });
+        
+        // $(".forecast-temp").empty();
+        // $(".forecast-hws").empty();
+        // $(".forecast-ws").empty();
+        // $(".forecast-ones").empty();
+        // $(".forecast-twos").empty();
+        // $(".forecast-threes").empty();
+        // $(".forecast-fours").empty();
+        // $(".forecast-fives").empty();
 
+      }
 
-    // if (history === null) {
-    //     console.log("first route")
-    //     cityOne.textContent = JSON.parse(localStorage.getItem("history"))[0];
-    //     cityTwo.textContent = JSON.parse(localStorage.getItem("history"))[1];
-    //     cityThree.textContent = JSON.parse(localStorage.getItem("history"))[2];
-    //     cityFour.textContent = JSON.parse(localStorage.getItem("history"))[3];
-    //     cityFive.textContent = JSON.parse(localStorage.getItem("history"))[4];
-    //     citySix.textContent = JSON.parse(localStorage.getItem("history"))[5];
-    //     citySeven.textContent = JSON.parse(localStorage.getItem("history"))[6];
-    //     cityEight.textContent = JSON.parse(localStorage.getItem("history"))[7];
+    //declaring variables and looping the local storage to the UI
+    let cityOne = document.getElementById('city-1')
+    let cityTwo = document.getElementById('city-2')
+    let cityThree = document.getElementById('city-3')
+    let cityFour = document.getElementById('city-4')
+    let cityFive = document.getElementById('city-5')
+    let citySix = document.getElementById('city-6')
+    let citySeven = document.getElementById('city-7')
+    let cityEight = document.getElementById('city-8')
+    
+    let history = JSON.parse(localStorage.getItem("history"));
 
-    // } else {
-    //     console.log("second route")
-    // }
-    
-    // for (let i = 0; i < history.length; i++) {
-    //     const element = history[i];
-    //    console.log(element);
-    // }
-    
-    
-    
+    if (history !== null && history !== undefined) {
+        if (history.length > 0) cityOne.textContent = history[0];
+        if (history.length > 1) cityTwo.textContent = history[1];
+        if (history.length > 2) cityThree.textContent = history[2];
+        if (history.length > 3) cityFour.textContent = history[3];
+        if (history.length > 4) cityFive.textContent = history[4];
+        if (history.length > 5) citySix.textContent = history[5];
+        if (history.length > 6) citySeven.textContent = history[6];
+        if (history.length > 7) cityEight.textContent = history[7];
+    }
+  
    //function to save the user input as a search value
    $("#search-button").on("click", function(){
     var searchValue = $("#search-value").val();
@@ -52,14 +62,24 @@ $(document).ready(function () {
         let searchHistory = JSON.parse(localStorage.getItem("history")) || [];
         searchHistory.push(searchValue);
         localStorage.setItem("history", JSON.stringify(searchHistory));
+
+        // update the city elements on the UI
+        let cityElements = [cityOne, cityTwo, cityThree, cityFour, cityFive, citySix, citySeven, cityEight];
+        for (let i = 0; i < searchHistory.length && i < cityElements.length; i++) {
+        cityElements[i].textContent = searchHistory[i];
+        }
     }
    
     //APIkey from openweatherAPI
     let APIkey ="9f1a5aabe8598c1da8fae3c2f589e48d"
 
-    // cityOne.onclick = searchWeather(JSON.parse(localStorage.getItem("history"))[0]);
-
-
+    for (let i = 0; i < history.length; i++) {
+        let city = document.getElementById(`city-${i+1}`);
+        city.onclick = function() {
+          searchWeather(history[i]);
+        };
+      }
+      
     //fetch call with the user input
     function searchWeather(searchValue) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${APIkey}`)
@@ -80,9 +100,9 @@ $(document).ready(function () {
         let longitude = data.coord.lon
 
         //grabbing the values from the data object and assigning them to HTML ids
-        $(".forecast-temp").text("Temperature (F): " + tempF)
-        $(".forecast-hws").text("Humidity: " + data.main.humidity)
-        $(".forecast-ws").text("Wind: " + data.wind.speed)
+        $(".forecast-temp").text("Temperature (F): " + tempF + " °F")
+        $(".forecast-hws").text("Humidity: " + data.main.humidity + "%")
+        $(".forecast-ws").text("Wind: " + data.wind.speed + " MPH")
     
         //second fetch call to get the five day forecast
          fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&appid=${APIkey}`)
@@ -169,6 +189,7 @@ $(document).ready(function () {
         $(".forecast-ws-four").text("Wind: " + data2.list[32].wind.speed + " MPH");
         $(".forecast-ws-five").text("Wind: " + data2.list[39].wind.speed + " MPH");
         })
+
             .catch(error => {
             console.error('Error:', error);
             });
