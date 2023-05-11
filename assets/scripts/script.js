@@ -76,6 +76,7 @@ $(document).ready(function () {
                 $(".date-3").text(dayThree);
                 $(".date-4").text(dayFour);
                 $(".date-5").text(dayFive);
+                
               } else {
                 // Display an error message or fallback text
                 $(".city-name").text("Forecast data unavailable");
