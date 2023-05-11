@@ -1,5 +1,42 @@
 $(document).ready(function () {
 
+    // let clearHistory = document.getElementById('clear-history');
+    // clearHistory.onclick = localStorage.clear();
+
+    // let cityOne = document.getElementById('city-1')
+    // let cityTwo = document.getElementById('city-2')
+    // let cityThree = document.getElementById('city-3')
+    // let cityFour = document.getElementById('city-4')
+    // let cityFive = document.getElementById('city-5')
+    // let citySix = document.getElementById('city-6')
+    // let citySeven = document.getElementById('city-7')
+    // let cityEight = document.getElementById('city-8')
+    
+    // let history = JSON.parse(localStorage.getItem("history"));
+
+
+    // if (history === null) {
+    //     console.log("first route")
+    //     cityOne.textContent = JSON.parse(localStorage.getItem("history"))[0];
+    //     cityTwo.textContent = JSON.parse(localStorage.getItem("history"))[1];
+    //     cityThree.textContent = JSON.parse(localStorage.getItem("history"))[2];
+    //     cityFour.textContent = JSON.parse(localStorage.getItem("history"))[3];
+    //     cityFive.textContent = JSON.parse(localStorage.getItem("history"))[4];
+    //     citySix.textContent = JSON.parse(localStorage.getItem("history"))[5];
+    //     citySeven.textContent = JSON.parse(localStorage.getItem("history"))[6];
+    //     cityEight.textContent = JSON.parse(localStorage.getItem("history"))[7];
+
+    // } else {
+    //     console.log("second route")
+    // }
+    
+    // for (let i = 0; i < history.length; i++) {
+    //     const element = history[i];
+    //    console.log(element);
+    // }
+    
+    
+    
    //function to save the user input as a search value
    $("#search-button").on("click", function(){
     var searchValue = $("#search-value").val();
@@ -7,6 +44,7 @@ $(document).ready(function () {
     $("#search-value").val("");
     saveSearchHistory(searchValue);
     searchWeather(searchValue);
+    
 });
 
     //function that saves search history to local storage
@@ -18,6 +56,9 @@ $(document).ready(function () {
    
     //APIkey from openweatherAPI
     let APIkey ="9f1a5aabe8598c1da8fae3c2f589e48d"
+
+    // cityOne.onclick = searchWeather(JSON.parse(localStorage.getItem("history"))[0]);
+
 
     //fetch call with the user input
     function searchWeather(searchValue) {
